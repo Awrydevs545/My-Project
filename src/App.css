@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+  /* The main background for the body is set in index.css */
+}
+
+main {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

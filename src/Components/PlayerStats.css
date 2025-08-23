@@ -1,0 +1,64 @@
+.player-stats-container {
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--secondary-color);
+}
+
+.comparison-area {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.player-card {
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.player-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.player-card h3 {
+    margin: 1rem 0 0.5rem;
+}
+
+.player-card select {
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.stats-list p {
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.vs-separator {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    align-self: center;
+}
+
+.highlight-better {
+    color: #28a745; /* Green for better stat */
+    font-weight: bold;
+}

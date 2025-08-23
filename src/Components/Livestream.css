@@ -1,0 +1,42 @@
+.livestream-container {
+    padding: 2rem;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.stream-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.video-container {
+    width: 70%;
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+}
+
+.chat-placeholder {
+    width: 25%;
+    background: var(--card-background);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: left;
+}
+
+.fullscreen-btn {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.fullscreen-btn:hover {
+    background-color: #218838;
+}
