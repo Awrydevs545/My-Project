@@ -10,8 +10,8 @@ const Header = ({
     refs,
     searchablePlayers,
     onPlayerSearch,
-    selectedLeague,   // Receive league state from App.jsx
-    onLeagueChange    // Receive league handler from App.jsx
+    selectedLeague,   // Receive league state from App
+    onLeagueChange    // Receive league handler from App
 }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [query, setQuery] = useState('');

@@ -7,10 +7,10 @@ import React, {
     useContext // --- THE DEFINITIVE FIX IS HERE ---
 } from 'react';
 import { ThemeContext } from './components/ThemeContext';
-import Header from './components/Header'; // ✅ match filename exactly
+import Header from './components/Header.jsx'; // ✅ match filename exactly
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
-import { fetchAllPlayersFromLeague } from './components/api'; // ✅ fixed case
+import { fetchAllPlayersFromLeague } from './components/api.jsx'; // ✅ fixed case
 
 
 const PlayerStats = React.lazy(() => import('./components/PlayerStats'));
