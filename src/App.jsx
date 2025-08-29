@@ -10,8 +10,8 @@ import { ThemeContext } from './components/ThemeContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
-import { fetchAllPlayersFromLeague } from './components/api';
-import './App.css';
+import { fetchAllPlayersFromLeague } from './components/api.jsx'; // ✅ fixed case
+
 
 const PlayerStats = React.lazy(() => import('./components/PlayerStats'));
 const Livestream = React.lazy(() => import('./components/Livestream'));
