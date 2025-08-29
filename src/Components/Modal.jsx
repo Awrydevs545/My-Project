@@ -1,19 +1,19 @@
 import React from 'react';
-import './Modal.css';
+import styles from './Modal.module.css';
 
 const Modal = ({ show, onClose, article }) => {
-    if (!show) {
+    if (!show || !article) {
         return null;
     }
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
-                <div className="modal-header">
+        <div className={styles.modalOverlay} onClick={onClose}>
+            <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                <div className={styles.modalHeader}>
                     <h2>{article.title}</h2>
-                    <button onClick={onClose} className="close-button">&times;</button>
+                    <button onClick={onClose} className={styles.closeButton}>&times;</button>
                 </div>
-                <div className="modal-body">
+                <div className={styles.modalBody}>
                     <img src={article.image} alt={article.title} />
                     <p>{article.fullText}</p>
                 </div>

@@ -1,0 +1,25 @@
+.playerStatsContainer {
+    /* The container is now much simpler, as the background is handled by index.css */
+    padding: clamp(2rem, 5vw, 4rem) 2rem;
+    min-height: 100vh; /* Ensure it takes at least the full screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comparisonArea {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.vsSeparator {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    color: var(--primary-color);
+    align-self: center;
+    text-shadow: 0 0 15px var(--primary-color);
+}

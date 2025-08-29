@@ -1,0 +1,21 @@
+.filterBar {
+    width: 100%;
+    max-width: 1200px; /* Constrain the width on large screens */
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    
+    /* The Glassmorphism Effect */
+    background: var(--surface-color-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    
+    /* Layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}

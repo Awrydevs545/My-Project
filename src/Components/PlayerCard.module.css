@@ -1,0 +1,77 @@
+.playerCard {
+    background: var(--surface-color-glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 1.5rem;
+    border-radius: 16px;
+    width: 320px;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.playerCard:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 30px -5px var(--primary-color);
+}
+
+/* --- Search Bar --- */
+.searchWrapper { position: relative; width: 100%; margin-bottom: 1rem; }
+.searchInput { width: 100%; padding: 0.75rem; font-size: 1rem; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--background-color); color: var(--text-primary); box-sizing: border-box; }
+.searchInput:focus { outline: none; border-color: var(--primary-color); }
+.suggestionsList { position: absolute; top: 100%; left: 0; right: 0; background-color: var(--surface-color); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; list-style: none; margin: 4px 0 0; padding: 0; z-index: 10; max-height: 200px; overflow-y: auto; }
+.suggestionsList li { padding: 0.75rem; cursor: pointer; transition: background-color 0.2s ease; }
+.suggestionsList li:hover { background-color: var(--primary-color); color: var(--button-text-color); font-weight: 600; }
+.loadingItem { padding: 0.75rem; color: var(--text-secondary); font-style: italic; text-align: center; }
+
+/*
+ * --- THE DEFINITIVE FIX FOR THE IMAGE IS HERE ---
+ * These rules strictly control the image's size and behavior.
+*/
+.playerImage {
+    width: 120px;           /* Sets a fixed width */
+    height: 120px;          /* Sets a fixed height */
+    border-radius: 50%;     /* Makes the container a perfect circle */
+    object-fit: cover;      /* Crucial: Fills the space without stretching the image */
+    border: 4px solid var(--primary-color);
+    margin-bottom: 1rem;
+    background-color: var(--background-color);
+    flex-shrink: 0;         /* Crucial: Prevents the image from growing or shrinking */
+}
+
+/* ... */
+.playerName {
+    margin: 0 0 1rem;
+    text-align: center;
+    font-size: 2rem; /* Larger name */
+    font-weight: 700;
+    /* THE CHANGE IS HERE: */
+    font-family: var(--font-heading);
+}
+/* ... */
+
+/* --- Details Section --- */
+.playerDetails {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1rem;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+.detailItem { display: flex; flex-direction: column; text-align: left; }
+.detailItem span { color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; }
+.detailItem strong { color: var(--primary-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; }
+
+/* --- Stat Bars Visual Section --- */
+.statsVisual { width: 100%; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+.statBarContainer { margin-bottom: 1rem; }
+.statLabel { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text-secondary); text-transform: capitalize; }
+.statLabel span:last-child { color: var(--text-primary); font-weight: 700; }
+.barBackground { width: 100%; height: 8px; background-color: var(--border-color); border-radius: 4px; overflow: hidden; }
+.barForeground { height: 100%; background: linear-gradient(90deg, var(--primary-color-darker) 0%, var(--primary-color) 100%); border-radius: 4px; transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1); }

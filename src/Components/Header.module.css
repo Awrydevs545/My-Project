@@ -1,0 +1,249 @@
+/* --- Base Header Styles --- */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: var(--surface-color-translucent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-color);
+    gap: 1.5rem;
+}
+
+/* --- Logo & Title --- */
+/* The Logo component itself is styled in Logo.module.css */
+
+/* --- Central Navigation & Filters (Desktop) --- */
+.desktopNavbar {
+    display: none; /* Hidden on mobile */
+}
+
+.leagueFilterWrapper {
+    display: none; /* Hidden on mobile */
+}
+
+/* --- Right-Side Controls --- */
+.headerControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto; /* Push to the right on mobile */
+}
+
+/* Search Bar & Suggestions */
+.searchWrapper {
+    position: relative;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 0.25rem;
+}
+
+.searchInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    padding: 0.25rem 0.5rem;
+    width: 0; /* Collapsed on mobile by default */
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.searchButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    display: flex;
+}
+
+.suggestionsList {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+    z-index: 110;
+    width: 250px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.suggestionsList li {
+    padding: 0.75rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.suggestionsList li:hover {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    font-weight: 600;
+}
+
+.suggestionItemDisabled {
+    padding: 0.75rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+
+/* --- Mobile Menu --- */
+.menuButton {
+    display: flex; /* Shown on mobile */
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobileNavbar {
+    display: none; /* Hidden by default, shown via JS */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-top: 1rem;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+.mobileNavbar.mobileNavOpen {
+    display: block;
+}
+
+.mobileNavbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.mobileNavbar li {
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.mobileLeagueFilter {
+    padding: 0 1rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+
+/* --- Desktop and Larger Screen Layout --- */
+@media (min-width: 950px) {
+    .header {
+        display: grid;
+        grid-template-columns: auto 1fr auto; /* Logo | Nav & Filter | Controls */
+        gap: 2rem;
+    }
+
+    .headerControls {
+        margin-left: 0;
+    }
+
+    .searchInput {
+        width: 150px; /* Expand search input */
+        opacity: 1;
+    }
+
+    /* Show the main desktop navigation and hide the hamburger menu */
+    .menuButton {
+        display: none;
+    }
+
+    .desktopNavbar {
+        display: flex;
+        justify-content: center; /* Center the nav links */
+    }
+
+    .desktopNavbar ul {
+        list-style: none;
+        display: flex;
+        gap: 2.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .desktopNavbar li {
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        position: relative;
+        color: var(--text-secondary);
+        transition: color 0.2s ease;
+    }
+    .desktopNavbar li:hover {
+        color: var(--text-primary);
+    }
+    .desktopNavbar li::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+    }
+    .desktopNavbar li:hover::after {
+        width: 70%;
+    }
+
+    /* Show the league filter in the header */
+    .leagueFilterWrapper {
+        display: none; /* Let's hide this to declutter, it's in the mobile menu */
+    }
+}
+
+/* For very large screens, we can add the league filter back in */
+@media (min-width: 1200px) {
+    .header {
+        grid-template-columns: auto auto 1fr auto; /* Logo | League | Nav | Controls */
+    }
+    .desktopNavbar {
+        justify-content: flex-start;
+        padding-left: 2rem;
+    }
+    .leagueFilterWrapper {
+        display: block; /* Show the league filter on very wide screens */
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+
+/* Animation for mobile menu */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

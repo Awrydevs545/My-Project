@@ -1,0 +1,134 @@
+.livestreamSection {
+    padding: clamp(2rem, 5vw, 4rem) 2rem;
+    border-radius: 20px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+.hubLayout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* --- Main Player --- */
+.playerContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.videoWrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #000;
+    border: 2px solid var(--border-color);
+    transition: border-color 0.3s ease;
+}
+.videoWrapper:hover {
+    border-color: var(--primary-color);
+}
+
+.videoInfo {
+    margin-top: 1rem;
+    text-align: left;
+}
+/* ... */
+.videoInfo h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    /* THE CHANGE IS HERE: */
+    font-family: var(--font-heading);
+}
+/* ... */
+.videoInfo p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* --- THE FIX IS HERE --- */
+/* The fullscreen button is now styled to match the rest of the site */
+.fullscreenBtn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--button-text-color); /* This uses our new variable */
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Aligns button to the left */
+}
+
+.fullscreenBtn:hover {
+    background-color: var(--primary-color-darker);
+}
+
+
+/* --- Playlist --- */
+.playlistContainer {
+    background-color: var(--background-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    height: fit-content;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.playlistContainer h4 {
+    margin: 0 0 1.5rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+.streamList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.streamItem {
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.streamItem:hover {
+    background-color: var(--surface-color);
+    border-color: var(--primary-color);
+}
+.streamItem.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.itemDetails { display: flex; flex-direction: column; gap: 0.25rem; }
+.itemCategory { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-secondary); }
+.itemTitle { font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+.streamItem.active .itemCategory,
+.streamItem.active .itemTitle {
+    color: var(--button-text-color); /* Also use the variable here for consistency */
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 900px) {
+    .hubLayout {
+        grid-template-columns: 1fr;
+    }
+    .playlistContainer {
+        max-height: 400px;
+    }
+}

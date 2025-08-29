@@ -1,0 +1,29 @@
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.filterContainer label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+.filterSelect {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filterSelect:hover {
+    border-color: var(--primary-color);
+    background-color: var(--border-color);
+}

@@ -1,60 +1,47 @@
-import React, { useState } from 'react';
-import { players } from '../Components/playerDatabase'; // Import player data
-import './PlayerStats.css';
-import bgImage from '../assets/images/player-stats-bg.jpg';
+import React, { useState, useCallback } from 'react';
+import PlayerCard from './PlayerCard';
+import FilterBar from './FilterBar';
+import styles from './PlayerStats.module.css';
 
-// Helper function to highlight the better stat
-const HighlightStat = ({ stat1, stat2 }) => {
-    if (stat1 > stat2) return <span className="highlight-better">{stat1}</span>;
-    if (stat2 > stat1) return <span>{stat1}</span>;
-    return <span>{stat1}</span>; // Equal stats
-};
+const defaultStats = { gamesPlayed: 0 };
 
-const PlayerStats = () => {
-    const [player1, setPlayer1] = useState(players.messi);
-    const [player2, setPlayer2] = useState(players.ronaldo);
+// This is now a "presentational" component. It receives all data and functions as props.
+const PlayerStats = ({ searchablePlayers, player1, player2, onPlayer1Change, onPlayer2Change }) => {
+    const [selectedCompetition, setSelectedCompetition] = useState('all-competitions');
+    const [selectedSeason, setSelectedSeason] = useState('all-time');
 
-    const handlePlayer1Change = (e) => setPlayer1(players[e.target.value]);
-    const handlePlayer2Change = (e) => setPlayer2(players[e.target.value]);
+    // These handlers just update the local filter state. The player change handlers come from props.
+    const handleCompetitionChange = useCallback((e) => setSelectedCompetition(e.target.value), []);
+    const handleSeasonChange = useCallback((e) => {
+        const newSeason = e.target.value;
+        setSelectedSeason(newSeason);
+        if (newSeason !== 'all-time' && selectedCompetition === 'all-competitions') setSelectedCompetition('premier-league');
+        if (newSeason === 'all-time') setSelectedCompetition('all-competitions');
+    }, [selectedCompetition]);
+
+    const getStats = (player) => {
+        if (!player || !player.stats) return defaultStats;
+        const seasonData = player.stats[selectedSeason];
+        if (!seasonData) return defaultStats;
+        return seasonData[selectedCompetition] || defaultStats;
+    };
+    const player1Stats = getStats(player1);
+    const player2Stats = getStats(player2);
 
     return (
-        <div
-        className="player-stats-container"
-        style={{ backgroundImage: `url(${bgImage})` }}>
-            <h2>Player Comparison</h2>
-            <div className="comparison-area">
-                {/* Player 1 Card */}
-                <div className="player-card">
-                    <img src={player1.image} alt={player1.name} className="player-image" />
-                    <h3>{player1.name}</h3>
-                    <select onChange={handlePlayer1Change} value={player1.id}>
-                        {Object.values(players).map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-                    </select>
-                    <div className="stats-list">
-                        <p>Goals: <HighlightStat stat1={player1.stats.goals} stat2={player2.stats.goals} /></p>
-                        <p>Assists: <HighlightStat stat1={player1.stats.assists} stat2={player2.stats.assists} /></p>
-                        <p>Appearances: <HighlightStat stat1={player1.stats.appearances} stat2={player2.stats.appearances} /></p>
-                    </div>
-                </div>
-
-                <div className="vs-separator">VS</div>
-
-                {/* Player 2 Card */}
-                <div className="player-card">
-                    <img src={player2.image} alt={player2.name} className="player-image" />
-                    <h3>{player2.name}</h3>
-                    <select onChange={handlePlayer2Change} value={player2.id}>
-                        {Object.values(players).map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-                    </select>
-                    <div className="stats-list">
-                        <p>Goals: <HighlightStat stat1={player2.stats.goals} stat2={player1.stats.goals} /></p>
-                        <p>Assists: <HighlightStat stat1={player2.stats.assists} stat2={player1.stats.assists} /></p>
-                        <p>Appearances: <HighlightStat stat1={player2.stats.appearances} stat2={player1.stats.appearances} /></p>
-                    </div>
-                </div>
+        <div className={styles.playerStatsContainer}>
+            <h2>Advanced Player Comparison</h2>
+            <FilterBar
+                selectedSeason={selectedSeason} onSeasonChange={handleSeasonChange}
+                selectedCompetition={selectedCompetition} onCompetitionChange={handleCompetitionChange}
+                // We no longer need the league filter here as it's a global concept now
+            />
+            <div className={styles.comparisonArea}>
+                <PlayerCard player={player1} stats={player1Stats} opponentStats={player2Stats} allPlayers={searchablePlayers} onPlayerChange={onPlayer1Change} />
+                <div className={styles.vsSeparator}>VS</div>
+                <PlayerCard player={player2} stats={player2Stats} opponentStats={player1Stats} allPlayers={searchablePlayers} onPlayerChange={onPlayer2Change} />
             </div>
         </div>
     );
 };
-
 export default PlayerStats;

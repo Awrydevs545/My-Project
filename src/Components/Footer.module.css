@@ -1,0 +1,21 @@
+.footer {
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.socialMedia { margin-bottom: 1rem; }
+.socialMedia a { margin: 0 1rem; }
+.socialIcon {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-secondary);
+    transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+.socialIcon:hover {
+    fill: var(--primary-color);
+    transform: scale(1.2);
+}

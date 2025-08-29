@@ -1,21 +1,63 @@
-/* Import a font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* --- FINAL FONT & DESIGN SYSTEM --- */
 
-/* Define global CSS variables for colors and fonts */
-:root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --background-dark: #121212;
-  --text-light: #ffffff;
-  --card-background: rgba(26, 26, 26, 0.85);
-  --font-family: 'Roboto', sans-serif;
+/* 1. Import BOTH fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;600;700;800&display=swap');
+
+/* --- THEME 1: "CHARCOAL & WHEAT" (Dark Mode) --- */
+body, body[data-theme='dark'] {
+  --primary-color: #F5DEB3;
+  --primary-color-darker: #d8c19b;
+  --background-gradient: radial-gradient(circle at top, #343434 0%, #1c1c1c 80%);
+  --surface-color: #2b2b2b;
+  --surface-color-glass: rgba(43, 43, 43, 0.6);
+  --border-color: #444444;
+  --text-primary: #EAEAEA;
+  --text-secondary: #A0A0A0;
+  --button-text-color: #1c1c1c;
+  /* 2. Define our new font variables */
+  --font-heading: 'EB Garamond', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* --- THEME 2: "CREAM & ONYX" (Light Mode) --- */
+body[data-theme='light'] {
+  --primary-color: #1c1c1c;
+  --primary-color-darker: #000000;
+  --background-gradient: #F5F5DC;
+  --surface-color: #FFFFFF;
+  --surface-color-glass: rgba(255, 255, 255, 0.6);
+  --border-color: #DCDCDC;
+  --text-primary: #44403C;
+  --text-secondary: #78716C;
+  --button-text-color: #F5F5DC;
+  --font-heading: 'EB Garamond', serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: var(--font-family);
-  background-color: var(--background-dark);
-  color: var(--text-light);
+  /* 3. Set the default font for the entire site to the clean body font */
+  font-family: var(--font-body);
+  background: var(--background-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+h2 {
+    font-size: clamp(2.25rem, 5vw, 3rem); /* Slightly larger for a serif font */
+    font-weight: 700; /* Use a bold weight for Garamond */
+    /* 4. Apply the sophisticated heading font to all main titles */
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    text-shadow: none; /* Serif fonts look cleaner without a text shadow */
+    text-transform: none; /* Use title case instead of uppercase for elegance */
+    letter-spacing: normal;
+    margin-bottom: 1em;
+}
+
+* {
+    transition: background-color 0.3s ease, color 0.2s ease, border-color 0.3s ease;
 }

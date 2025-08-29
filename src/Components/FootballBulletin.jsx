@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
-import Modal from '../Components/Modal';
-import './FootballBulletin.css';
-import bg from "../assets/images/bulletin-bg.jpg";
-import news1 from '../assets/images/news1.jpg';
-import news2 from '../assets/images/news2.jpg';
-import news3 from '../assets/images/news3.jpg';
-
-const newsArticles = [
-  { id: 1, title: 'FC Barcelona was crowned Copa del Rey champions for 2025 after beating Real Madrid 3–2 in a dramatic final played at Estadio de La Cartuja in Seville.', image: news1, excerpt: '...', fullText: '...' },
-  { id: 2, title: 'Lamine Yamal receiving Barcelona’s legendary No. 10 jersey. It was presented to him by club president Joan Laporta during a special ceremony following the signing of his new contract that extends until 2031.', image: news2, excerpt: '...', fullText: '...' },
-  { id: 3, title: 'Upcoming Manchester Derby Preview', image: news3, excerpt: '...', fullText: '...' },
-];
-
+import Modal from '../components/Modal';
+import { newsArticles } from './newsDatabase'; // It will now import the larger list
+import styles from './FootballBulletin.module.css';
 
 const FootballBulletin = () => {
     const [showModal, setShowModal] = useState(false);
@@ -25,16 +15,15 @@ const FootballBulletin = () => {
     const handleCloseModal = () => setShowModal(false);
 
     return (
-        <div
-        className="bulletin-container"
-        style={{ backgroundImage: `url(${bg})` }}
-        >
-            <h2>Football Bulletin</h2>
-            <div className="news-grid">
+        // The container no longer needs a background image
+        <div className={styles.bulletinContainer}>
+            {/* A slightly better title */}
+            <h2>Latest News & Bulletins</h2>
+            <div className={styles.newsGrid}>
                 {newsArticles.map(article => (
-                    <div key={article.id} className="news-card">
-                        <img src={article.image} alt={article.title} className="news-image"/>
-                        <div className="news-content">
+                    <div key={article.id} className={styles.newsCard}>
+                        <img src={article.image} alt={article.title} className={styles.newsImage} loading="lazy" />
+                        <div className={styles.newsContent}>
                             <h3>{article.title}</h3>
                             <p>{article.excerpt}</p>
                             <button onClick={() => handleReadMore(article)}>Read More</button>
