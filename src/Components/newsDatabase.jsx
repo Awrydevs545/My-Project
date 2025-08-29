@@ -60,10 +60,10 @@ export const newsArticles = [
     },
     {
         id: 8,
-        title: 'Club announces major stadium expansion plans',
+        title: 'Barcelona announces major stadium expansion plans',
         excerpt: 'A new multi-million dollar project will see the stadium\'s capacity increase by 15,000 seats.',
         image: news8Img,
-        fullText: 'The club has unveiled ambitious plans for a state-of-the-art stadium expansion. The project, set to begin next year, will increase capacity to over 75,000 and include new corporate facilities and a club museum.'
+        fullText: 'The club has unveiled ambitious plans for a state-of-the-art stadium expansion. The project, set to begin next year, will increase capacity to over 105,000 and include new corporate facilities and a club museum.'
     },
     {
         id: 9,
